@@ -3,98 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>密封 - 隐私优先的社交平台</title>
+    <title>进制转换器</title>
     <style>
         body {
             font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            line-height: 1.6;
+            background: #f5f6fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             margin: 0;
-            padding: 0;
-            color: #333;
         }
 
-        .header {
-            background: linear-gradient(135deg, #1a237e, #0d47a1);
-            color: white;
-            padding: 80px 20px;
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h1 {
             text-align: center;
+            color: #2d3436;
+            margin-bottom: 2rem;
         }
 
-        .features {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .input-group {
+            margin-bottom: 1.5rem;
         }
 
-        .feature-card {
-            background: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #636e72;
+            font-weight: bold;
         }
 
-        .cta-button {
-            background: #2962ff;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-            transition: background 0.3s;
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #dfe6e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
         }
 
-        .cta-button:hover {
-            background: #1565c0;
+        input:focus {
+            outline: none;
+            border-color: #74b9ff;
+        }
+
+        .error {
+            color: #d63031;
+            font-size: 0.9rem;
+            display: none;
+            margin-top: 0.3rem;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>密封</h1>
-        <p>注重隐私保护的匿名社交平台</p>
-        <a href="#download" class="cta-button">立即下载</a>
-    </div>
-
-    <div class="features">
-        <div class="feature-card">
-            <h2>🔒 隐私至上</h2>
-            <p>所有用户数据经过端到端加密，存储于境外Firebase数据库，确保您的隐私安全。</p>
+    <div class="container">
+        <h1>进制转换器</h1>
+        <div class="input-group">
+            <label>二进制 (Binary)</label>
+            <input type="text" id="binary" placeholder="输入二进制数">
+            <div class="error" id="binary-error">请输入有效的二进制数</div>
         </div>
-
-        <div class="feature-card">
-            <h2>👤 匿名社交</h2>
-            <p>使用自定义昵称，无需真实身份信息，让您畅所欲言。</p>
+        <div class="input-group">
+            <label>八进制 (Octal)</label>
+            <input type="text" id="octal" placeholder="输入八进制数">
+            <div class="error" id="octal-error">请输入有效的八进制数</div>
         </div>
-
-        <div class="feature-card">
-            <h2>🌐 安全存储</h2>
-            <p>采用军事级别加密技术，数据传输全程加密，确保信息安全。</p>
+        <div class="input-group">
+            <label>十进制 (Decimal)</label>
+            <input type="text" id="decimal" placeholder="输入十进制数">
+            <div class="error" id="decimal-error">请输入有效的十进制数</div>
         </div>
-
-        <div class="feature-card">
-            <h2>💬 自由表达</h2>
-            <p>创建话题、分享想法，在安全的环境中展现真实的自己。</p>
-        </div>
-
-        <div class="feature-card">
-            <h2>⚡ 高性能</h2>
-            <p>优化的性能设计，确保流畅的用户体验。</p>
-        </div>
-
-        <div class="feature-card">
-            <h2>🛡️ 数据保护</h2>
-            <p>我们承诺不会向任何人提供你的任何信息。</p>
+        <div class="input-group">
+            <label>十六进制 (Hexadecimal)</label>
+            <input type="text" id="hexadecimal" placeholder="输入十六进制数">
+            <div class="error" id="hexadecimal-error">请输入有效的十六进制数</div>
         </div>
     </div>
 
-    <div style="text-align: center; padding: 40px;">
-        <h2>开始使用密封</h2>
-        <p>加入我们，体验真正安全的社交平台</p>
-        <a href="#download" class="cta-button">下载应用</a>
-    </div>
+    <script>
+        const inputs = {
+            binary: document.getElementById('binary'),
+            octal: document.getElementById('octal'),
+            decimal: document.getElementById('decimal'),
+            hexadecimal: document.getElementById('hexadecimal')
+        };
+
+        const errors = {
+            binary: document.getElementById('binary-error'),
+            octal: document.getElementById('octal-error'),
+            decimal: document.getElementById('decimal-error'),
+            hexadecimal: document.getElementById('hexadecimal-error')
+        };
+
+        // 验证函数
+        const validators = {
+            binary: value => /^[01]*$/.test(value),
+            octal: value => /^[0-7]*$/.test(value),
+            decimal: value => /^\d*$/.test(value),
+            hexadecimal: value => /^[0-9A-Fa-f]*$/.test(value)
+        };
+
+        // 转换函数
+        function convert(value, fromBase, type) {
+            if (value === '') return '';
+            try {
+                const decimal = parseInt(value, fromBase);
+                switch(type) {
+                    case 'binary': return decimal.toString(2);
+                    case 'octal': return decimal.toString(8);
+                    case 'decimal': return decimal.toString(10);
+                    case 'hexadecimal': return decimal.toString(16).toUpperCase();
+                }
+            } catch(e) {
+                return '';
+            }
+        }
+
+        // 为每个输入框添加事件监听器
+        Object.keys(inputs).forEach(type => {
+            inputs[type].addEventListener('input', (e) => {
+                const value = e.target.value.trim();
+                
+                // 验证输入
+                if (value && !validators[type](value)) {
+                    errors[type].style.display = 'block';
+                    return;
+                }
+                errors[type].style.display = 'none';
+
+                // 获取基数
+                const base = type === 'binary' ? 2 : 
+                            type === 'octal' ? 8 : 
+                            type === 'decimal' ? 10 : 16;
+
+                // 更新其他输入框
+                Object.keys(inputs).forEach(targetType => {
+                    if (targetType !== type) {
+                        inputs[targetType].value = convert(value, base, targetType);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html> 
