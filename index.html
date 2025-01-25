@@ -11,13 +11,24 @@
             margin: 0;
             padding: 0;
             color: #333;
+            background-color: #f9f9f9;
         }
 
         .header {
-            background: linear-gradient(135deg, #1a237e, #0d47a1);
+            background: linear-gradient(135deg, #6b5b95, #4a3f76);
             color: white;
             padding: 80px 20px;
             text-align: center;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .header p {
+            font-size: 20px;
+            margin-bottom: 40px;
         }
 
         .features {
@@ -34,10 +45,22 @@
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .feature-card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #6b5b95;
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            color: #666;
         }
 
         .cta-button {
-            background: #2962ff;
+            background: #6b5b95;
             color: white;
             padding: 15px 30px;
             border-radius: 25px;
@@ -48,17 +71,51 @@
         }
 
         .cta-button:hover {
-            background: #1565c0;
+            background: #5a4a7d;
+        }
+
+        .about {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #6b5b95;
+        }
+
+        .about p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
+    <!-- 头部 -->
     <div class="header">
         <h1>密封</h1>
         <p>注重隐私保护的匿名社交平台</p>
         <a href="https://github.com/3365427906/my-app-website/releases/download/V1.0/app-release.apk" class="cta-button">立即下载</a>
     </div>
 
+    <!-- 功能介绍 -->
     <div class="features">
         <div class="feature-card">
             <h2>🔒 隐私至上</h2>
@@ -91,10 +148,18 @@
         </div>
     </div>
 
-    <div style="text-align: center; padding: 40px;">
-        <h2>开始使用密封</h2>
-        <p>加入我们，体验真正安全的社交平台</p>
-        <a href="https://github.com/3365427906/my-app-website/releases/download/V1.0/app-release.apk" class="cta-button">下载应用</a>
+    <!-- 关于页面 -->
+    <div class="about">
+        <h2>关于我们</h2>
+        <p>
+            密封是一个为每个人提供自由表达空间的平台。在这里，你可以匿名分享你的想法、宣泄情绪，无需担心被他人知晓。
+            我们致力于为用户提供一个安全、私密的表达环境，让每个人都能找到属于自己的树洞。
+        </p>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer">
+        <p>&copy; 2023 密封. 版权所有.</p>
     </div>
 </body>
-</html> 
+</html>
