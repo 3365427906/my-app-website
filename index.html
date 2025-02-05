@@ -110,17 +110,18 @@
 <body>
     <!-- 头部 -->
     <div class="header">
-        <h1>密封</h1>
-        <p>注重隐私保护的匿名社交平台</p>
-        <a href="https://cdn.jsdelivr.net/gh/3365427906/my-app-website@v1.0/downloads/app-release.apk" class="cta-button">立即下载</a>
-        <br><br>
-        <a href="https://wwva.lanzouq.com/iUZ6k2mk6olg"
-style="color: #ffffff; 
-                  text-decoration: none;
-                  font-size: 14px;
-                  display: block;
-                  margin-top: 10px">蓝奏云备用下载地址</a>
-    </div>
+    <h1>密封</h1>
+    <p>注重隐私保护的匿名社交平台</p>
+    <!-- 修改后的下载按钮 -->
+    <a id="dynamic-download" href="#" class="cta-button" download="app-release.apk">立即下载</a>
+    <br><br>
+    <a href="https://wwva.lanzouq.com/iUZ6k2mk6olg"
+       style="color: #ffffff; 
+              text-decoration: none;
+              font-size: 14px;
+              display: block;
+              margin-top: 10px">蓝奏云备用下载地址</a>
+</div>
 
     <!-- 功能介绍 -->
     <div class="features">
@@ -169,4 +170,31 @@ style="color: #ffffff;
         <p>&copy; 2023 密封. 版权所有.</p>
     </div>
 </body>
+    <script>
+// ====================== 动态防缓存下载链接 ======================
+(function() {
+  // 获取下载按钮元素
+  const downloadBtn = document.getElementById('dynamic-download');
+  
+  // 基础下载链接（根据实际情况修改）
+  const baseUrl = "https://cdn.jsdelivr.net/gh/3365427906/my-app-website@v1.0/downloads/app-release.apk";
+
+  // 生成随机参数（时间戳 + 随机字符串双保险）
+  function generateAntiCacheParam() {
+    const timestamp = Date.now();
+    const randomStr = Math.random().toString(36).substring(2, 8); // 6位随机字母数字
+    return `t=${timestamp}&r=${randomStr}`;
+  }
+
+  // 更新下载链接
+  if (downloadBtn) {
+    downloadBtn.href = `${baseUrl}?${generateAntiCacheParam()}`;
+    
+    // 可选：每次点击都刷新参数（适合高频更新场景）
+    // downloadBtn.addEventListener('click', function() {
+    //   this.href = `${baseUrl}?${generateAntiCacheParam()}`;
+    // });
+  }
+})();
+</script>
 </html>
