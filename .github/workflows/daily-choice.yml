@@ -2,7 +2,7 @@ name: Daily Random Choice
 
 on:
   schedule:
-    - cron: '50 18 * * *'  # UTC 18:30 = 北京时间 2:30
+    - cron: '30 00 * * *'  # UTC 18:30 = 北京时间 2:30
   workflow_dispatch:
 
 jobs:
